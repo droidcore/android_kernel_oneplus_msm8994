@@ -651,6 +651,11 @@ config KERNEL_TEXT_MPU_PROT
 config STATE_NOTIFIER
         bool "State Notifier"
 	default y
+	  
+config STATE_NOTIFIER
+        bool "State Notifier"
+	default y
+
 
 
 config MSM_HOTPLUG
