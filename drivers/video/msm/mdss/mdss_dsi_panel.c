@@ -985,16 +985,16 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 		return -EINVAL;
 	}
 
-<<<<<<< HEAD
+
 display_on = true;
 
-=======
+
 #ifdef CONFIG_POWERSUSPEND
 	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE);
 #endif
 	
 	mdss_screen_on = true;
->>>>>>> b9841df... kernel/power/powersuspend: new PM kernel driver for Android w/o early_suspend v1.5 (faux123/Yank555.lu)
+
 	pinfo = &pdata->panel_info;
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
@@ -1117,7 +1117,7 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	if (ctrl->off_cmds.cmd_cnt)
 		mdss_dsi_panel_cmds_send(ctrl, &ctrl->off_cmds, CMD_REQ_COMMIT);
 
-<<<<<<< HEAD
+
 	display_on = false;
 
 //	memset(rx_buf, 0, sizeof(rx_buf));
@@ -1125,14 +1125,13 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 //	mdss_dsi_panel_cmd_read(ctrl, 0x0A, 0, NULL, rx_buf, 1);
 //	printk("%s: after sleep Reg 0A 0x%02x\n", __func__, rx_buf[0]);
 //	mdss_debug_enable_clock(0);
-=======
+
     
 #ifdef CONFIG_POWERSUSPEND
 	set_power_suspend_state_panel_hook(POWER_SUSPEND_ACTIVE);
 #endif
 	
 	mdss_screen_on = false;
->>>>>>> b9841df... kernel/power/powersuspend: new PM kernel driver for Android w/o early_suspend v1.5 (faux123/Yank555.lu)
 
 end:
 	pinfo->blank_state = MDSS_PANEL_BLANK_BLANK;
