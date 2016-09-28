@@ -1539,12 +1539,11 @@ static int mdss_dsi_event_handler(struct mdss_panel_data *pdata,
 			rc = mdss_dsi_unblank(pdata);
 		pdata->panel_info.esd_rdy = true;
 		lcd_notifier_call_chain(LCD_EVENT_ON_END, NULL);
-<<<<<<< HEAD
-=======
+
 #ifdef CONFIG_STATE_NOTIFIER
 		state_resume();
 #endif
->>>>>>> b045787... drivers: state_notifier: Add toggle to enable driver
+
 		break;
 	case MDSS_EVENT_BLANK:
 		lcd_notifier_call_chain(LCD_EVENT_OFF_START, NULL);
@@ -1560,12 +1559,11 @@ static int mdss_dsi_event_handler(struct mdss_panel_data *pdata,
 			rc = mdss_dsi_blank(pdata, power_state);
 		rc = mdss_dsi_off(pdata, power_state);
 		lcd_notifier_call_chain(LCD_EVENT_OFF_END, NULL);
-<<<<<<< HEAD
-=======
+
 #ifdef CONFIG_STATE_NOTIFIER
 		state_suspend();
 #endif
->>>>>>> b045787... drivers: state_notifier: Add toggle to enable driver
+
 		break;
 	case MDSS_EVENT_CONT_SPLASH_FINISH:
 		if (ctrl_pdata->off_cmds.link_state == DSI_LP_MODE)
