@@ -993,7 +993,6 @@ display_on = true;
 	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE);
 #endif
 	
-	mdss_screen_on = true;
 
 	pinfo = &pdata->panel_info;
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
@@ -1131,7 +1130,7 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	set_power_suspend_state_panel_hook(POWER_SUSPEND_ACTIVE);
 #endif
 	
-	mdss_screen_on = false;
+	
 
 end:
 	pinfo->blank_state = MDSS_PANEL_BLANK_BLANK;
