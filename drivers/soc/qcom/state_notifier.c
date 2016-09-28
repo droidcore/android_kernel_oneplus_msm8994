@@ -14,10 +14,8 @@
 #include <linux/export.h>
 #include <linux/module.h>
 
-<<<<<<< HEAD
 #define DEFAULT_SUSPEND_DEFER_TIME 10
 #define DEFAULT_USE_FB_NOTIFIER 1
-=======
 #define DEFAULT_SUSPEND_DEFER_TIME 	10
 #define STATE_NOTIFIER			"state_notifier"
 
@@ -32,7 +30,6 @@ do {				\
 	if (debug)		\
 		pr_info(msg);	\
 } while (0)
->>>>>>> b045787... drivers: state_notifier: Add toggle to enable driver
 
 static bool enabled = true;
 module_param_named(enabled, enabled, bool, 0664);
@@ -42,13 +39,10 @@ static struct delayed_work suspend_work;
 static struct workqueue_struct *susp_wq;
 struct work_struct resume_work;
 bool state_suspended;
-<<<<<<< HEAD
 bool use_fb_notifier = DEFAULT_USE_FB_NOTIFIER;
 module_param_named(use_fb_notifier, use_fb_notifier, bool, 0664);
-=======
 module_param_named(state_suspended, state_suspended, bool, 0444);
 static bool suspend_in_progress;
->>>>>>> b045787... drivers: state_notifier: Add toggle to enable driver
 
 static BLOCKING_NOTIFIER_HEAD(state_notifier_list);
 
@@ -98,12 +92,11 @@ static void _resume_work(struct work_struct *work)
 
 void state_suspend(void)
 {
-<<<<<<< HEAD
+
 	if (state_suspended)
-=======
 	dprintk("%s: suspend called.\n", STATE_NOTIFIER);
 	if (state_suspended || suspend_in_progress || !enabled)
->>>>>>> b045787... drivers: state_notifier: Add toggle to enable driver
+
 		return;
 
 	INIT_DELAYED_WORK(&suspend_work, _suspend_work);
@@ -122,19 +115,8 @@ void state_resume(void)
 
 static int __init state_notifier_init(void)
 {
-<<<<<<< HEAD
-	int ret;
-
-	notif.notifier_call = fb_notifier_callback;
-	ret = fb_register_client(&notif);
-	if (ret)
-		pr_err("Failed to register FB notifier callback for state notifier.\n");
-
-	susp_wq =
-	    alloc_workqueue("state_susp_wq", WQ_FREEZABLE, 0);
-=======
 	susp_wq = create_singlethread_workqueue("state_susp_wq");
->>>>>>> b045787... drivers: state_notifier: Add toggle to enable driver
+
 	if (!susp_wq)
 		pr_err("State Notifier failed to allocate suspend workqueue\n");
 
